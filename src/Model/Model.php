@@ -34,12 +34,26 @@ class DbContext
     }
 
     function setStrat($operation) {
-        $this->Strat = $operation;
+        switch ($operation){
+            case 'select':
+                $this->Strat = new SelectData();
+                break;
+            case 'insert':
+                $this->Strat = new InsertData();
+                break;
+            case 'delete':
+                $this->Strat = new DeleteData();
+                break;
+            case 'update':
+                $this->Strat = new UpdateData();
+                break;
+        }
     }
 
     function doStrat($data) {
         $this->Strat->prepareQry($this->pdo, $data);
         $result = $this->Strat->executeQry($this->Strat->qry);
+        
         return $result;
     }
 }
@@ -138,6 +152,7 @@ class UpdateData extends Strategy
     } 
 
     public function prepareQry($pdo, $data){
+        
         try {
             if ($data['updatemenu-parent']==='') {
                 $parentid = null;

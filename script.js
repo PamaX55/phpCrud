@@ -61,7 +61,7 @@ function UpdateMenu(event){
 
 function submitForm(formdata){
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "src/controller.php", true);
+  xhr.open("POST", "src/Controller/Controller.php", true);
 
   xhr.onreadystatechange = function () {
     if(xhr.readyState == 4 && xhr.status == 200){

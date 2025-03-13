@@ -2,6 +2,10 @@
 
 namespace Menu\Controller\Operation;
 
+include __DIR__ . '/../Model/Model.php';
+
+use Menu\Model\DbContext as DbContext;
+
 class Operation
 {
     protected $DB = null;

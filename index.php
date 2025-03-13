@@ -4,12 +4,14 @@
  * This file handles the first interaction when accesing the project in browser
  */
 
-require_once __DIR__ . "/vendor/autoload.php";
-require_once realpath("vendor/autoload.php");
+// require_once __DIR__ . "/vendor/autoload.php";
+// require_once realpath("vendor/autoload.php");
 // $test = new Menu\Test\Test();
+include 'src\Controller\Controller.php';
+use Menu\Controller\SelectOperation as SelectOperation;
 
 try {
-    $Controller = new Menu\Controller\SelectOperation();
+    $Controller = new SelectOperation();
 } catch (PDOException $e) {
     echo "Hubo un error de conexion con la base de datos";
     return ;

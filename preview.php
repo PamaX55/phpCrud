@@ -6,12 +6,7 @@
 
 // namespace Menu\View;
 
-// require "src/controller.php";
-use Menu\Controller\Operation;
-use Menu\Controller\SelectOperation;
-require_once realpath("vendor/autoload.php");
-
-$test = new Menu\Test();
+include __DIR__ . "/src/Controller/Controller.php";
 
 $menu = $_GET['menu'];
 

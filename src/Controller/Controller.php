@@ -8,24 +8,29 @@ namespace Menu\Controller;
  */
 
 // require "back.php";
-var_dump(__DIR__ . "/../../vendor/autoload.php");
 // require_once __DIR__ . "/../../vendor/autoload.php";
-$test = new Menu\Test();
-include("vendor/autoload.php");
+// $test = new Menu\Test();
+// include("vendor/autoload.php");
 // require_once realpath("/../../vendor/autoload.php");
 
 // use Menu\Controller\Operation;
 
-use Menu\Model\DbContext;
-use Menu\Model\SelectData;
-use Menu\Model\InsertData;
-use Menu\Model\UpdateData;
-use Menu\Model\DeleteData;
+include 'Operation.php';
+
+use Menu\Controller\Operation\Operation as Operation;
+use Menu\Controller\Operation\Action as Action;
+use Menu\Controller\Operation\UsesContext as UsesContext;
+
+// use Menu\Model\DbContext;
+// use Menu\Model\SelectData;
+// use Menu\Model\InsertData;
+// use Menu\Model\UpdateData;
+// use Menu\Model\DeleteData;
 
 class SelectOperation extends Operation
 {
     function selectAll() {
-        $this->DB->setStrat(new SelectData());
+        $this->DB->setStrat("select");
         $result = $this->DB->doStrat(null);
         return json_encode($result);
     }
@@ -36,7 +41,7 @@ class CreateOperation extends Operation implements UsesContext
     use Action;
 
     function setContext($data) {
-        $this->DB->setStrat(new InsertData());
+        $this->DB->setStrat("insert");
         $this->useStrategy($data);
     }
 }
@@ -46,7 +51,7 @@ class UpdateOperation extends Operation implements UsesContext
     use Action;
 
     function setContext($data) {
-        $this->DB->setStrat(new UpdateData());
+        $this->DB->setStrat("update");
         $this->useStrategy($data);
     }
 }
@@ -56,7 +61,7 @@ class DeleteOperation extends Operation implements UsesContext
     use Action;
 
     function setContext($data) {
-        $this->DB->setStrat(new DeleteData());
+        $this->DB->setStrat("delete");
         $this->useStrategy($data);
     }
 }
